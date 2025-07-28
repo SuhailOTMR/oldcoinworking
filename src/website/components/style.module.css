@@ -1,0 +1,92 @@
+.logo {
+  height: 2rem;
+  width: auto;
+}
+
+.navmenu {
+  display: none;
+  gap: 30px;
+  color: white;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.custombtn {
+  padding: 8px 0px;
+  background-color: #FFA900;
+  border-radius: 20px;
+  border: none;
+  width: 80px;
+  font-size: 0.85rem;
+
+}
+
+.togglerBtn {
+  display: inline-block;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.info {
+  display: flex;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.cusomgap1 {
+  padding-right: 20px;
+}
+
+@media screen and (min-width: 1000px) {
+  .navmenu {
+    display: flex;
+  }
+
+  .togglerBtn {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 479px) {
+  .logo {
+    height: 20px;
+    width: auto;
+  }
+
+  .custombtn {
+    width: 60px;
+    /* height: 10px; */
+    font-size: 0.7rem;
+    padding: 10px 0px;
+    font-size: 12px;
+  }
+
+  .cusomgap1 {
+    padding-right: 0px;
+    margin-left: 20px;
+  }
+
+  .info {
+    gap: 5px;
+  }
+
+  .togglerBtn {
+    margin-right: 0;
+  }
+
+
+  .navbar .container-fluid {
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .navbar .container-fluid>div {
+    flex-shrink: 1;
+  }
+}

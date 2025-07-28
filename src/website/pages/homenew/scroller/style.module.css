@@ -1,0 +1,33 @@
+.marquee {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    background: transparent;
+    margin-top: 50px;
+}
+
+.track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+    gap: 30px;
+}
+
+.item {
+    width: 200px;
+    height: 290px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
