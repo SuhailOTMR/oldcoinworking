@@ -5,6 +5,7 @@ import WalletReducer from './user/walletSlice'
 import WithdrawReducer from './user/withdrawSlice'
 import OfferReducer from './user/offerSlice'
 import SurveyReducer from './user/surveySlice'
+import popupReducer from './user/popupSlice';
 
 export default configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
     wallet: WalletReducer,
     withdraw: WithdrawReducer,
     offer: OfferReducer,
-    survey: SurveyReducer
+    survey: SurveyReducer,
+    popup: popupReducer,
   },
 })

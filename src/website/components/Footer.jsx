@@ -135,6 +135,7 @@
 
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -196,8 +197,13 @@ const Footer = () => {
             <h3 className="font-bold font-sans text-left" style={{ color: "#FFA900" }}>Legal</h3>
             <hr className="h-1 w-1/2 bg-white -mt-1 mb-3" style={{ marginTop: "3px" }} />
             <div className="flex flex-col gap-2">
-              <a href="#" className=" text-white no-underline text-left">Privacy Policy</a>
-              <a href="#" className=" text-white no-underline text-left">Terms & Conditions</a>
+              {/* <a href="#" className=" text-white no-underline text-left">Privacy Policy</a> */}
+              <Link to={'privacypolicy'}  className=" text-white no-underline text-left">
+              Privacy Policy
+              </Link>
+              <Link to={'termcondition'}  className=" text-white no-underline text-left">
+              Term & Condition
+              </Link>
               <a href="#" className=" text-white no-underline text-left">Disclaimer</a>
             </div>
           </div>

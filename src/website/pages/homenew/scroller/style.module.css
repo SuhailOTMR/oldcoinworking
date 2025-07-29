@@ -9,7 +9,7 @@
 .track {
     display: flex;
     width: max-content;
-    animation: scroll 30s linear infinite;
+    animation: scroll 50s linear infinite;
     gap: 30px;
 }
 

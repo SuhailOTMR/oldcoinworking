@@ -768,15 +768,14 @@
 
 
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
+import { openPopup } from '../../../redux/user/popupSlice';
 import Scroller from './scroller/scroller';
-// import Carousel from '../controll/ControlableSlide';
 import Carousel from './controller';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
-// import CashoutDashboard from '../dashboarser';
-// import Trust from '../trust';
 import { Link } from 'react-router-dom';
 const HomeNew = () => {
+  const dispatch = useDispatch();
   const starStyle = {
     color: '#FFA900',
     fontSize: '25px',
@@ -808,19 +807,44 @@ const HomeNew = () => {
               </p>
             </div>
 
-            <button className="w-[200px] bg-[#FFA900] rounded-full shadow-lg py-2 font-semibold text-black">
+            <button className="w-[200px] bg-[#FFA900] rounded-full shadow-lg py-2 font-semibold text-black" onClick={() => dispatch(openPopup('signup'))}>
               Sign UP
             </button>
-            
+
           </div>
+
         </div>
 
 
         <Scroller />
+
+        <div className="container mx-auto px-4">
+          <div className="yo">
+            <div>
+              <span className="text-2xl font-bold">$60,000,000+</span>
+              <span>Paid Out to Users</span>
+            </div>
+            <div>
+              <span className="text-2xl font-bold">1M+</span>
+              <span>Active Users Worldwide</span>
+            </div>
+            <div>
+              <span className="text-2xl font-bold">4.6 EXCELLENT</span>
+              <div className="flex">
+                <FaStar style={starStyle} />
+                <FaStar style={starStyle} />
+                <FaStar style={starStyle} />
+                <FaStar style={starStyle} />
+                <FaStarHalfAlt style={starStyle} />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* Stats section */}
-      <div className="container mx-auto px-4">
+      {/* <div className="container mx-auto px-4">
         <div className="yo">
           <div>
             <span className="text-2xl font-bold">$60,000,000+</span>
@@ -841,7 +865,7 @@ const HomeNew = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Offer instructions */}
       <div className="container mx-auto px-4 mt-12">
@@ -866,7 +890,7 @@ const HomeNew = () => {
             >
               WANT TO POCKET SOME QUICK CASH? FIND OUT <span className="text-[#FFA900]">HOW HERE</span>
             </h2>
-            <button className="bg-[#FFA900] text-black font-bold text-xl py-2 w-[280px] rounded-full mx-auto">
+            <button className="bg-[#FFA900] text-black font-bold text-xl py-2 w-[280px] rounded-full mx-auto" onClick={() => dispatch(openPopup('signin'))}>
               Start earning now
             </button>
             <img src="/yoyo.png" alt="" className="img-fluid pandaimg rounded-2xl mt-4" />
@@ -929,7 +953,7 @@ const HomeNew = () => {
             <span className="text-2xl font-bold font-sans">{card.title}</span>
             <p className="w-[90%] mx-auto" style={{ textAlign: "center" }}>{card.desc}</p>
             <h3 className="text-[#27FD6A] font-bold" style={{ fontSize: "25px" }}>{card.value}</h3>
-            <button className="bg-[#FFA900] text-black font-bold py-2 w-[220px] rounded-full">
+            <button className="bg-[#FFA900] text-black font-bold py-2 w-[220px] rounded-full" onClick={() => dispatch(openPopup('signin'))}>
               Start Playing & Earning
             </button>
           </div>

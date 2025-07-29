@@ -58,6 +58,8 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { openPopup, closePopup } from '../../redux/user/popupSlice';
 import { Link } from "react-router-dom";
 import Style from './style.module.css';
 import { BsGlobe, BsCashCoin } from "react-icons/bs";
@@ -78,7 +80,7 @@ const SignUp = ({ isPopupOpen, setIsPopupOpen }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-
+  const dispatch = useDispatch();
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -125,9 +127,10 @@ const SignUp = ({ isPopupOpen, setIsPopupOpen }) => {
       >
         {/* Close Button */}
         <button
-          onClick={() => setIsPopupOpen(false)}
+          // onClick={() => setIsPopupOpen(false)}
+          onClick={() => dispatch(closePopup())}
           className="absolute top-0 right-0 text-white hover:text-gray-300"
-          style={{margin:"10px 20px"}}
+          style={{ margin: "10px 20px" }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -148,7 +151,7 @@ const SignUp = ({ isPopupOpen, setIsPopupOpen }) => {
 
         {/* Form Fields */}
         <form onSubmit={handleSignUpSubmit} className="space-y-4">
-          {[ 
+          {[
             { label: 'First Name', value: firstName, setValue: setFirstName, placeholder: 'Enter First Name' },
             { label: 'Last Name', value: lastName, setValue: setLastName, placeholder: 'Enter Last Name' },
             { label: 'User Name', value: userName, setValue: setUserName, placeholder: 'Enter User Name' },
@@ -157,7 +160,7 @@ const SignUp = ({ isPopupOpen, setIsPopupOpen }) => {
             { label: 'Password', value: password, setValue: setPassword, placeholder: 'Enter Password', type: 'password' }
           ].map(({ label, value, setValue, placeholder, type = 'text' }, i) => (
             <div key={i}>
-              <label className="text-sm" style={{marginLeft:"-80%"}}>{label}</label>
+              <label className="text-sm" style={{ marginLeft: "-80%" }}>{label}</label>
               <div className="flex items-center mt-1 bg-[#2B2A3D] rounded-lg px-3 py-2">
                 <span className="mr-3 text-lg text-gray-400">
                   {type === 'password' ? <FaLock /> : <FaEnvelope />}
@@ -176,12 +179,16 @@ const SignUp = ({ isPopupOpen, setIsPopupOpen }) => {
 
           {/* Terms & Conditions */}
           <div className="flex items-start space-x-2 text-xs text-white" style={{ margin: "10px 0px" }}>
-            <input type="checkbox" id="terms" className="mt-1 accent-yellow-400" />
+            <input type="checkbox" id="terms" className="mt-1 accent-yellow-400" required/>
             <label htmlFor="terms">
-              By signing up you agree to the <span className="text-yellow-400 font-semibold"><Link to={'termcondition'}>
-              Term & Condition
-              </Link></span> and{' '}
-              <span className="text-yellow-400 font-semibold"><Link to={'privacypolicy'}>Privacy Policy</Link></span>
+              By signing up you agree to the <span className="text-yellow-400 font-semibold"><button onClick={() => dispatch(closePopup())}>
+                <Link to={'termcondition'}>
+                  Term & Condition
+                </Link>
+              </button></span> and{' '}
+              <span className="text-yellow-400 font-semibold"><button onClick={() => dispatch(closePopup())}>
+                <Link to={'privacypolicy'}>Privacy Policy</Link>
+              </button></span>
             </label>
           </div>
 
@@ -212,6 +219,8 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+
+  const dispatch = useDispatch();
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -256,7 +265,8 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
       >
         {/* Close Button */}
         <button
-          onClick={() => setIsPopupOpen(false)}
+          // onClick={() => setIsPopupOpen(false)}
+          onClick={() => dispatch(closePopup())}
           className="absolute top-4 right-4 text-white hover:text-gray-300"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
@@ -289,7 +299,7 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
           <form onSubmit={handleLoginSubmit}>
             {/* Email */}
             <div>
-              <label htmlFor="email" className="text-white text-sm font-semibold mb-2 block" style={{marginLeft:"-87%"}}>
+              <label htmlFor="email" className="text-white text-sm font-semibold mb-2 block" style={{ marginLeft: "-87%" }}>
                 Email
               </label>
               <div className="flex items-center bg-[#1f2035] px-4 py-3 rounded-md">
@@ -310,7 +320,7 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="text-white text-sm font-semibold mt-2 mb-2 block" style={{marginLeft:"-81%"}}>
+              <label htmlFor="password" className="text-white text-sm font-semibold mt-2 mb-2 block" style={{ marginLeft: "-81%" }}>
                 Password
               </label>
               <div className="flex items-center bg-[#1f2035] px-4 py-3 rounded-md">
@@ -331,18 +341,20 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
                 {/* <a href="#" className="text-yellow-400 hover:underline">
                   Forget your password?
                 </a> */}
-                <Link to={"forgotpassword"} className="text-yellow-400 hover:underline">
-                Forget your password
-                </Link>
+                <button style={{ backgroundColor: "transparent", border: "none" }} onClick={() => dispatch(closePopup())}>
+                  <Link to={"forgotpassword"} className="text-yellow-400 hover:underline">
+                    Forget your password
+                  </Link>
+                </button>
+
               </div>
             </div>
 
             {/* Sign In Button */}
             <button
               type="submit"
-              className={`w-full py-3 text-white font-semibold rounded-md ${
-                loading ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-[#ffce3a] to-[#fba207]"
-              }`}
+              className={`w-full py-3 text-white font-semibold rounded-md ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-[#ffce3a] to-[#fba207]"
+                }`}
               disabled={loading}
             >
               {loading ? "Signing In..." : "Sign In"}
@@ -376,10 +388,11 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
           Don’t have an account yet?{" "}
           <button
             type="button"
-            onClick={() => {
-              setPopupType("signup");
-              setIsPopupOpen(true);
-            }}
+            // onClick={() => {
+            //   setPopupType("signup");
+            //   setIsPopupOpen(true);
+            // }}
+            onClick={() => dispatch(openPopup('signup'))}
             className="text-yellow-400 hover:underline"
           >
             Register now
@@ -390,10 +403,168 @@ const Signin = ({ isPopupOpen, setIsPopupOpen, setPopupType }) => {
   );
 };
 
+// const Header = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   // const [isPopupOpen, setIsPopupOpen] = useState(false);
+//   // const [popupType, setPopupType] = useState('signin'); // 'signin' or 'signup'
+
+//   // useEffect(() => {
+//   //   document.body.style.overflow = isPopupOpen ? 'hidden' : 'auto';
+//   //   return () => {
+//   //     document.body.style.overflow = 'auto';
+//   //   };
+//   // }, [isPopupOpen]);
+
+
+
+//   const dispatch = useDispatch();
+//   const { isOpen: isPopupOpen, popupType } = useSelector(state => state.popup);
+
+//   useEffect(() => {
+//     document.body.style.overflow = isPopupOpen ? 'hidden' : 'auto';
+//     return () => { document.body.style.overflow = 'auto'; };
+//   }, [isPopupOpen]);
+
+
+
+//   return (
+//     <>
+//       {/* Navbar Header */}
+//       <div
+//         className="w-screen fixed z-[1000] shadow-lg px-2 flex justify-between items-center"
+//         style={{ backgroundColor: "#141524", height: "80px" }}
+//       >
+//         <div className="flex items-center gap-2">
+//           <a href="#" className="block">
+//             <img src="/logo.png" alt="Logo" className={Style.logo} />
+//           </a>
+//           <div className={Style.navmenu}>
+//             <div className="flex gap-1">
+//               <FaHandHoldingUsd style={{ color: "#a9a9ca", fontSize: "20px", cursor: "pointer" }} />
+//               <span style={{ color: "#a9a9ca", cursor: "pointer" }}>Earn</span>
+//             </div>
+//             <div className="flex gap-1 mt-1">
+//               <BsCashCoin style={{ color: "#a9a9ca", fontSize: "20px", marginTop: "5px", cursor: "pointer" }} />
+//               <span style={{ color: "#a9a9ca", cursor: "pointer" }}>Cashout</span>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className={`flex items-center gap-2 ${Style.cusomgap1}`}>
+//           <button className={`btn ${Style.navmenu}`} style={{ cursor: "pointer" }}>
+//             {/* i just want to display glob icon fix that here */}
+//             {/* <div id="google_translate_element" className="mb-4">
+//               <BsGlobe style={{ fontSize: "20px", color: "#a9a9ca" }}   />
+
+//             </div> */}
+//             <div id="google_translate_element" style={{ display: "none" }}></div>
+
+//             <BsGlobe style={{ fontSize: "20px", color: "#a9a9ca" }} />
+
+
+
+
+//           </button>
+//           <div className={Style.info}>
+//             <button
+//               className={Style.custombtn}
+//               // onClick={() => {
+//               //   setPopupType('signin');
+//               //   setIsPopupOpen(true);
+//               // }}
+
+//               onClick={() => dispatch(openPopup('signin'))}
+//               style={{ cursor: "pointer", fontWeight: "bold" }}
+//             >
+//               Login
+//             </button>
+//             <button
+//               className={Style.custombtn}
+//               // onClick={() => {
+//               //   setPopupType('signup');
+//               //   setIsPopupOpen(true);
+//               // }}
+
+//               onClick={() => dispatch(openPopup('signin'))}
+//               style={{ cursor: "pointer", fontWeight: "bold" }}
+//             >
+//               Sign Up
+//             </button>
+//           </div>
+//           <button
+//             className={`btn ${Style.togglerBtn}`}
+//             onClick={() => setIsMenuOpen(true)}
+//           >
+//             <CiMenuFries style={{ fontSize: "22px" }} />
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Slide-out Menu */}
+//       <div
+//         className={`fixed top-0 right-0 h-full w-full bg-white z-[1100] shadow-lg transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+//           }`}
+//       >
+//         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300">
+//           <h5 className="text-lg font-semibold text-gray-800">Menu</h5>
+//           <button onClick={() => setIsMenuOpen(false)}>
+//             <IoClose className="text-2xl text-gray-600" />
+//           </button>
+//         </div>
+
+//         <div className="p-4 space-y-4">
+//           <a href="#" className="block text-gray-700 hover:text-blue-500">Home</a>
+//           <a href="#" className="block text-gray-700 hover:text-blue-500">About</a>
+//           <a href="#" className="block text-gray-700 hover:text-blue-500">Contact</a>
+//           <a href="#" className="block text-gray-700 hover:text-blue-500">Help</a>
+//         </div>
+//       </div>
+
+//       {/* Backdrop for slide menu */}
+//       {isMenuOpen && (
+//         <div
+//           onClick={() => setIsMenuOpen(false)}
+//           className="fixed inset-0 bg-black bg-opacity-40 z-[1000]"
+//         />
+//       )}
+
+//       {/* Popup for login/signup */}
+//       {isPopupOpen && (
+//         <>
+//           <div
+//             className="fixed inset-0 z-[1200]"
+//             // onClick={() => setIsPopupOpen(false)}
+//             onClick={() => dispatch(closePopup())}
+//             style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+//           />
+//           <div className="fixed top-1/2 left-1/2 z-[1300] transform -translate-x-1/2 -translate-y-1/2 w-[100vw] max-w-md">
+//             {/* {popupType === 'signup' ? (
+//               <SignUp setIsPopupOpen={setIsPopupOpen} setPopupType={setPopupType} />
+//             ) : (
+//               <Signin setIsPopupOpen={setIsPopupOpen} setPopupType={setPopupType} />
+//             )} */}
+
+//             {popupType === 'signup' ? (
+//               <SignUp />
+//             ) : (
+//               <Signin />
+//             )}
+//           </div>
+//         </>
+//       )}
+//     </>
+//   );
+// };
+
+// export default Header;
+
+
+
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [popupType, setPopupType] = useState('signin'); // 'signin' or 'signup'
+  const dispatch = useDispatch();
+  const { isOpen: isPopupOpen, popupType } = useSelector(state => state.popup);
 
   useEffect(() => {
     document.body.style.overflow = isPopupOpen ? 'hidden' : 'auto';
@@ -401,8 +572,6 @@ const Header = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isPopupOpen]);
-
-  
 
   return (
     <>
@@ -412,9 +581,10 @@ const Header = () => {
         style={{ backgroundColor: "#141524", height: "80px" }}
       >
         <div className="flex items-center gap-2">
-          <a href="#" className="block">
+          <Link to="/" className="block">
             <img src="/logo.png" alt="Logo" className={Style.logo} />
-          </a>
+          </Link>
+
           <div className={Style.navmenu}>
             <div className="flex gap-1">
               <FaHandHoldingUsd style={{ color: "#a9a9ca", fontSize: "20px", cursor: "pointer" }} />
@@ -429,41 +599,27 @@ const Header = () => {
 
         <div className={`flex items-center gap-2 ${Style.cusomgap1}`}>
           <button className={`btn ${Style.navmenu}`} style={{ cursor: "pointer" }}>
-            {/* i just want to display glob icon fix that here */}
-            {/* <div id="google_translate_element" className="mb-4">
-              <BsGlobe style={{ fontSize: "20px", color: "#a9a9ca" }}   />
-
-            </div> */}
             <div id="google_translate_element" style={{ display: "none" }}></div>
-
-            <BsGlobe   style={{ fontSize: "20px", color: "#a9a9ca" }}   />
-
-
-            
-            
+            <BsGlobe style={{ fontSize: "20px", color: "#a9a9ca" }} />
           </button>
+
           <div className={Style.info}>
             <button
               className={Style.custombtn}
-              onClick={() => {
-                setPopupType('signin');
-                setIsPopupOpen(true);
-              }}
-              style={{ cursor: "pointer",fontWeight:"bold" }}
+              onClick={() => dispatch(openPopup('signin'))}
+              style={{ cursor: "pointer", fontWeight: "bold" }}
             >
               Login
             </button>
             <button
               className={Style.custombtn}
-              onClick={() => {
-                setPopupType('signup');
-                setIsPopupOpen(true);
-              }}
-              style={{ cursor: "pointer",fontWeight:"bold" }}
+              onClick={() => dispatch(openPopup('signup'))}
+              style={{ cursor: "pointer", fontWeight: "bold" }}
             >
               Sign Up
             </button>
           </div>
+
           <button
             className={`btn ${Style.togglerBtn}`}
             onClick={() => setIsMenuOpen(true)}
@@ -486,10 +642,10 @@ const Header = () => {
         </div>
 
         <div className="p-4 space-y-4">
-          <a href="#" className="block text-gray-700 hover:text-blue-500">Home</a>
-          <a href="#" className="block text-gray-700 hover:text-blue-500">About</a>
-          <a href="#" className="block text-gray-700 hover:text-blue-500">Contact</a>
-          <a href="#" className="block text-gray-700 hover:text-blue-500">Help</a>
+          <Link to="/" className="block text-gray-700 hover:text-blue-500">Home</Link>
+          <Link to="/about" className="block text-gray-700 hover:text-blue-500">About</Link>
+          <Link to="/contact" className="block text-gray-700 hover:text-blue-500">Contact</Link>
+          <Link to="/help" className="block text-gray-700 hover:text-blue-500">Help</Link>
         </div>
       </div>
 
@@ -506,14 +662,14 @@ const Header = () => {
         <>
           <div
             className="fixed inset-0 z-[1200]"
-            onClick={() => setIsPopupOpen(false)}
+            onClick={() => dispatch(closePopup())}
             style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
           />
           <div className="fixed top-1/2 left-1/2 z-[1300] transform -translate-x-1/2 -translate-y-1/2 w-[100vw] max-w-md">
             {popupType === 'signup' ? (
-              <SignUp setIsPopupOpen={setIsPopupOpen} setPopupType={setPopupType} />
+              <SignUp />
             ) : (
-              <Signin setIsPopupOpen={setIsPopupOpen} setPopupType={setPopupType} />
+              <Signin />
             )}
           </div>
         </>
@@ -521,8 +677,9 @@ const Header = () => {
     </>
   );
 };
-
 export default Header;
+
+
 
 
 
