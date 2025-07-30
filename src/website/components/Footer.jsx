@@ -151,7 +151,7 @@ const Footer = () => {
 
           {/* Social Icons Row */}
           <div className="flex flex-wrap items-center gap-3 text-left">
-            {[0, 1, 2, 3, 4].map(i => (
+            {/* {[0, 1, 2, 3, 4].map(i => (
               <a key={i} href="">
                 <img
                   src={`/zoo100${i}.png`}
@@ -159,7 +159,44 @@ const Footer = () => {
                   className=" customicon"
                 />
               </a>
-            ))}
+            ))} */}
+
+            <a href="">
+              <img
+                src={`/zoo1000.png`}
+                alt=""
+                className=" customicon"
+              />
+            </a>
+            <a href="">
+              <img
+                src={`/zoo1001.png`}
+                alt=""
+                className=" customicon"
+              />
+            </a>
+            <a href="">
+              <img
+                src={`/zoo1002.png`}
+                alt=""
+                className=" customicon"
+              />
+            </a>
+            <a href="">
+              <img
+                src={`/zoo1003.png`}
+                alt=""
+                className=" customicon"
+              />
+            </a>
+            <a href="https://www.instagram.com/coinlooty/">
+              <img
+                src={`/zoo1004.png`}
+                alt=""
+                className=" customicon"
+              />
+            </a>
+
           </div>
 
 
@@ -198,11 +235,11 @@ const Footer = () => {
             <hr className="h-1 w-1/2 bg-white -mt-1 mb-3" style={{ marginTop: "3px" }} />
             <div className="flex flex-col gap-2">
               {/* <a href="#" className=" text-white no-underline text-left">Privacy Policy</a> */}
-              <Link to={'privacypolicy'}  className=" text-white no-underline text-left">
-              Privacy Policy
+              <Link to={'privacypolicy'} className=" text-white no-underline text-left">
+                Privacy Policy
               </Link>
-              <Link to={'termcondition'}  className=" text-white no-underline text-left">
-              Term & Condition
+              <Link to={'termcondition'} className=" text-white no-underline text-left">
+                Term & Condition
               </Link>
               <a href="#" className=" text-white no-underline text-left">Disclaimer</a>
             </div>
