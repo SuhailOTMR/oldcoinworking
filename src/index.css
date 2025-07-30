@@ -949,8 +949,6 @@ body {
     gap: 12px;
   }
 
-  
-
   @media (max-width: 768px) {
     .carousel-wrapper .carousel-card {
       flex: 0 0 300px !important;
@@ -974,6 +972,7 @@ body {
 
 .imgfor {
   margin: 30px auto;
+  height: 200px;
 }
 
 .forpadding {

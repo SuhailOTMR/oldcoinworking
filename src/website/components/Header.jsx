@@ -179,7 +179,7 @@ const SignUp = ({ isPopupOpen, setIsPopupOpen }) => {
 
           {/* Terms & Conditions */}
           <div className="flex items-start space-x-2 text-xs text-white" style={{ margin: "10px 0px" }}>
-            <input type="checkbox" id="terms" className="mt-1 accent-yellow-400" required/>
+            <input type="checkbox" id="terms" className="mt-1 accent-yellow-400" required />
             <label htmlFor="terms">
               By signing up you agree to the <span className="text-yellow-400 font-semibold"><button onClick={() => dispatch(closePopup())}>
                 <Link to={'termcondition'}>
@@ -588,12 +588,22 @@ const Header = () => {
           <div className={Style.navmenu}>
             <div className="flex gap-1">
               <FaHandHoldingUsd style={{ color: "#a9a9ca", fontSize: "20px", cursor: "pointer" }} />
-              <span style={{ color: "#a9a9ca", cursor: "pointer" }}>Earn</span>
+              
+              <a href="#earn">
+                <span style={{ color: "#a9a9ca", cursor: "pointer" }}>Earn</span>
+              </a>
             </div>
-            <div className="flex gap-1 mt-1">
+            {/* <div className="flex gap-1 mt-1">
               <BsCashCoin style={{ color: "#a9a9ca", fontSize: "20px", marginTop: "5px", cursor: "pointer" }} />
               <span style={{ color: "#a9a9ca", cursor: "pointer" }}>Cashout</span>
-            </div>
+            </div> */}
+            <a href="#cashout">
+
+              <div className="flex gap-1 mt-1">
+                <BsCashCoin style={{ color: "#a9a9ca", fontSize: "20px", marginTop: "5px", cursor: "pointer" }} />
+                <span style={{ color: "#a9a9ca", cursor: "pointer" }}>Cashout</span>
+              </div>
+            </a>
           </div>
         </div>
 

@@ -6,6 +6,9 @@ import {
   RouterProvider,
   useLocation,
 } from "react-router-dom";
+import Faq from "../components/Faq";
+import ComingSoonPopup from "../components/feature";
+import AboutUs from "../components/Aboutus";
 import CoinLootyLoader from "../../Common/loader/CoinLootyLoader";
 import { LoadingProvider } from "../../context/loading-context";
 import { ToggleUSDProvider } from "../../context/ToggleUSDContext";
@@ -130,6 +133,18 @@ const router = createBrowserRouter(
         <Route path="privacypolicy" element={<PrivacyPolicy />}>
           {" "}
         </Route>
+        {/*  */}
+        <Route path="faq" element={<Faq />}>
+          {" "}
+        </Route>
+        <Route path="about-us" element={<AboutUs />}>
+          {" "}
+        </Route>
+        <Route path="soon" element={<ComingSoonPopup />}>
+          {" "}
+        </Route>
+
+        {/*  */}
         <Route path="contactus" element={<ContactUs />}>
           {" "}
         </Route>
