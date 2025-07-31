@@ -5,10 +5,11 @@ import Scroller from './scroller/scroller';
 import Carousel from './controller';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import CashoutStats from '../Cashout';
 
 const HomeNew = () => {
   const dispatch = useDispatch();
-  
+
   const starStyle = {
     color: '#FFA900',
     fontSize: '25px',
@@ -263,11 +264,14 @@ const HomeNew = () => {
           />
         </div>
 
-        <div >
-          <img src="/zoo700.png" alt="" className="img-fluid mt-20" style={{ width: "1000px", margin: "60px auto" }} />
-        </div>
+      </div>
+      {/* Cashout Dashboard*/}
+      {/* <div >
+        <img src="/zoo700.png" alt="" className="img-fluid mt-20" style={{ width: "1000px", margin: "60px auto" }} />
+      </div> */}
 
-        {/* <CashoutDashboard/> */}
+      <div className="min-h-screen bg-[#141524] flex items-center justify-center px-4 lg:mt-[-20px] lg:mb-[-20px] 2xl:mt-[-90px] 2xl:mb-[-90px] ">
+        <CashoutStats />
       </div>
 
       {/* Carousel section */}

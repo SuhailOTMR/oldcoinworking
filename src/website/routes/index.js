@@ -7,7 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Faq from "../components/Faq";
-import ComingSoonPopup from "../components/feature";
+
 import AboutUs from "../components/Aboutus";
 import CoinLootyLoader from "../../Common/loader/CoinLootyLoader";
 import { LoadingProvider } from "../../context/loading-context";
@@ -140,9 +140,7 @@ const router = createBrowserRouter(
         <Route path="about-us" element={<AboutUs />}>
           {" "}
         </Route>
-        <Route path="soon" element={<ComingSoonPopup />}>
-          {" "}
-        </Route>
+        
 
         {/*  */}
         <Route path="contactus" element={<ContactUs />}>

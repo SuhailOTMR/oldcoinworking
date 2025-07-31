@@ -8,13 +8,14 @@ import store from './redux/store';
 import { ToggleUSDProvider } from './context/ToggleUSDContext';
 import CoinLootyLoader from './Common/loader/CoinLootyLoader';
 import { LoadingProvider } from './context/loading-context';
-
+import { ToastContainer } from 'react-toastify';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <LoadingProvider>
         <App />
+        <ToastContainer autoClose={3000} limit={3}/>
       </LoadingProvider>
     </Provider>
   </React.StrictMode>

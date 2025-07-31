@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { openPopup } from '../../redux/user/popupSlice';
-
+import { toast } from 'react-toastify';
 const Footer = () => {
   const dispatch = useDispatch();
   return (
@@ -83,7 +83,7 @@ const Footer = () => {
               <button onClick={() => dispatch(openPopup('signin'))} className=" text-white no-underline text-left">Wallet / My Rewards</button>
               <a href="#how" className=" text-white no-underline text-left">How it Works</a>
               {/* <a href="#" className=" text-white no-underline text-left">Refer & Earn</a> */}
-               <button onClick={() => dispatch(openPopup('signin'))} className=" text-white no-underline text-left">Refer & Earn</button>
+              <button onClick={() => dispatch(openPopup('signin'))} className=" text-white no-underline text-left">Refer & Earn</button>
             </div>
           </div>
 
@@ -99,7 +99,9 @@ const Footer = () => {
               {/* <a href="#" className=" text-white no-underline text-left">Live chat</a> */}
               <button onClick={() => dispatch(openPopup('signin'))} className=" text-white no-underline text-left">Live chat</button>
               <button onClick={() => dispatch(openPopup('signin'))} className=" text-white no-underline text-left">Submit a ticket</button>
-              <a href="#" className=" text-white no-underline text-left">Email Support</a>
+              <a href="mailto:support@coinlooty.com" className="text-white no-underline text-left">
+                Email Support
+              </a>
             </div>
           </div>
 
@@ -126,7 +128,7 @@ const Footer = () => {
             <div className="flex flex-col gap-2">
               {/* <a href="#" className=" text-white no-underline text-left">About Us</a> */}
               <Link to={'about-us'} className=" text-white no-underline text-left">
-              About Us
+                About Us
               </Link>
               <a href="#" className=" text-white no-underline text-left">Team</a>
               <a href="#" className=" text-white no-underline text-left">Career</a>
@@ -135,14 +137,22 @@ const Footer = () => {
 
           {/* App buttons */}
           <div className="min-w-[150px] flex flex-col gap-3">
-            {/* <img src="/newgoogleplay.webp" alt="Google Play" className="max-w-[160px] w-full" /> */}
-            <Link to={'soon'}>
+            <button onClick={() => {
+              toast.info('We are launching soon', {
+                position: "top-center",
+                theme: "dark",
+              });
+            }}>
               <img src="/newgoogleplay.webp" alt="Google Play" className="max-w-[160px] w-full" />
-            </Link>
-            {/* <img src="/appstore.png" alt="App Store" className="max-w-[160px] w-full" /> */}
-            <Link to={'soon'}>
-              <img src="/appstore.png" alt="App Store" className="max-w-[160px] w-full" /> 
-            </Link>
+            </button>
+            <button onClick={() => {
+              toast.info('We are launching soon', {
+                position: "top-center",
+                theme: "dark",
+              });
+            }}>
+              <img src="/appstore.png" alt="App Store" className="max-w-[160px] w-full" />
+            </button>
           </div>
         </div>
       </div>
